@@ -1,0 +1,10 @@
+{
+    "type": "record",
+    "namespace": "io.javaflam",
+    "name": "Book",
+    "fields": [
+        {"name": "isbn", "type": "string"},
+        {"name": "title", "type": "string"},
+        {"name": "author", "type": "string"}
+    ]
+}
