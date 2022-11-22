@@ -1,0 +1,32 @@
+extensions:
+  memory_ballast:
+    size_mib: 512
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: otel-collector:4317
+
+exporters:
+  otlp/elastic:
+    endpoint: https://59099c972ea64f06b56e6fd207f16eef.apm.ap-southeast-1.aws.cloud.es.io:443
+    tls:
+      insecure_skip_verify: true
+    headers:
+      Authorization: "Bearer 7Y83XxnkXyBEUcD8AQ" 
+  logging:
+    loglevel: debug
+
+service:
+  extensions: [memory_ballast, zpages]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlp/elastic, logging]
+    metrics:
+      receivers: [otlp]
+      exporters: [otlp/elastic, logging]
+
