@@ -12,11 +12,11 @@ receivers:
 
 exporters:
   otlp/elastic:
-    endpoint: https://59099c972ea64f06b56e6fd207f16eef.apm.ap-southeast-1.aws.cloud.es.io:443
+    endpoint: {{APM_OTLP_ENDPOINT}}
     tls:
       insecure_skip_verify: true
     headers:
-      Authorization: "Bearer 7Y83XxnkXyBEUcD8AQ" 
+      Authorization: "Bearer {{APM_SECRET_TOKEN}}" 
   logging:
     loglevel: debug
 
